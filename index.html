@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        integrity="sha512-RrPwF7m7U3QquzD0CZyZKvX9pX91noEwNyh6niXqDm/kq1vfiGgjCfGkzOeUX+9l4S8V1xXDZyMGSXVDVlqTDA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <div id="header">
+        <div class="container">
+            <nav>
+                <img src="photo_2024-04-22_18-15-36.jpg" class="logo">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-text">
+                <p>Computer Science and Engineering Student</p>
+                <h1>I am <span>Md.Hasan Emam</span> from <span>Bangladesh</span>, <br>currently studying CSE <br>at the
+                    Department of ECE <br> at North South University.</h1>
+            </div>
+        </div>
+    </div>
+
+    <div id="about">
+        <div class="container">
+            <div class="row">
+                <div class="about-col-1">
+                    <img src="usuer.jpg">
+                </div>
+                <div class="about-col-2">
+                    <h1 class="sub-title">About Me</h1>
+                    <p>🔍 About Me:
+                        Enthusiastic and dedicated student at North South University with a passion for computer science and
+                        a solid foundation in C, Java, data structures,
+                        discrete mathematics, and computer architecture,HTML,CSS, PHP , SQL,DBMS.
+                        Eager to contribute my skills and knowledge to innovative projectswhile continually expanding my
+                        expertise
+                        in the dynamic field of computer science.</p>
+                    <div class="tab-title">
+                        <p class="tab-link active-link" onclick="opentab(event, 'Skills')">Skills</p>
+                        <p class="tab-link" onclick="opentab(event, 'Education')">Education</p>
+                        <p class="tab-link" onclick="opentab(event, 'Experience')">Experience</p>
+                    </div>
+                    <div class="tab-contents active-tab" id="Skills">
+                        <ul>
+                            <li><span>HTML & CSS</span><br>Markup & structure</li>
+                            <li><span>C, C++, JAVA</span><br>Programming Language</li>
+                            <li><span>MYSQL</span><br>Database</li>
+                            <li><span>PHP</span><br>Framework</li>
+                        </ul>
+                    </div>
+                    <div class="tab-contents" id="Education">
+                        <ul>
+                            <li><span>Primary School</span><br>Anirban School, Gopalganj</li>
+                            <li><span>High-School</span><br>S.M Model Govt. High school, Gopalganj</li>
+                            <li><span>Higher Secondary</span><br>Hazi Lalmia City College, Gopalganj</li>
+                            <li><span>University</span><br>CSE at North South University, Dhaka</li>
+                        </ul>
+                    </div>
+                    <div class="tab-contents" id="Experience">
+                        <ul>
+                            <li><span>Experience</span><br>Experiences will be added very soon</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="portfolio">
+        <h1 class="sub-title">My Works</h1>
+        <div class="download-container">
+            <div class="download">
+                <h1><span>NSU CGPA Calculator</span></h1>
+                <a href="Project.zip" download class="download-link">Download C Files</a>
+            </div>
+            <div class="download">
+                <h1><span>Hotel Management System</span></h1>
+                <a href="hotel_management_System_CSE215-master.zip" download class="download-link">Download Java
+                    Files</a>
+            </div>
+        </div>
+        <div>
+            <a href="#more" class="btn">See More</a>
+        </div>
+    </div>
+
+    <div id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="contact-left">
+                    <h1 class="sub-title">Contact Me</h1>
+                    <p><i class="fa fa-paper-plane"></i> hasanemamrabbi@gmail.com</p>
+                    <p><i class="fa fa-mobile-alt"></i> 01785805606</p>
+                    <div class="social-icons">
+                        <a href="https://www.linkedin.com/in/md-hasan-emam/" rel="noopener"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://www.facebook.com/hasanemamrabby25102000/" rel="noopener"><i class="fab fa-facebook-square"></i></a>
+                        <a href="https://www.instagram.com/mohammadhasanemamrabby/?hl=en" rel="noopener"><i class="fab fa-instagram-square"></i></a>
+                        <a href="https://twitter.com/hasanemamrabby" rel="noopener"><i class="fab fa-twitter-square"></i></a>
+                        <a href="https://www.threads.net/@mohammadhasanemamrabby" rel="noopener"><i class="fab fa-twitch"></i></a>
+                    </div>
+                    <div>
+                        <a href="Profile.pdf" class="btn btn2">Download CV</a>
+                    </div>
+                </div>
+                <div class="contact-right">
+                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                        <input type="text" name="Name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="Your Email" required>
+                        <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="copyright">
+        <div class="container">
+            <p>copyright © Hasan. <i class="fa fa-window" style="--fa-primary-color: #f60944; --fa-secondary-color: #f60944;"></i>
+                Developed by MD.Hasan Emam </p>
+        </div>
+    </div>
+
+    <script>
+        var tablinks = document.getElementsByClassName('tab-link');
+        var tabcontents = document.getElementsByClassName('tab-contents');
+
+        function opentab(event, tabname) {
+            for (let tablink of tablinks) {
+                tablink.classList.remove('active-link');
+            }
+            for (let tabcontent of tabcontents) {
+                tabcontent.classList.remove('active-tab');
+            }
+
+            document.getElementById(tabname).classList.add('active-tab');
+            event.currentTarget.classList.add('active-link');
+        }
+
+        // Smooth scroll function
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        // Add event listeners to navigation links
+        document.addEventListener('DOMContentLoaded', function () {
+            const navLinks = document.querySelectorAll('nav ul li a');
+
+            navLinks.forEach(function (link) {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    scrollToSection(targetId);
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
