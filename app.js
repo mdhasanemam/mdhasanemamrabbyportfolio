@@ -3,6 +3,11 @@ const GITHUB_USER = 'mdhasanemam';
 const FEATURED_REPOSITORIES = [];
 const publicationsURL = 'data/publications.json';
 
+const store = {
+  get(key) { try { return localStorage.getItem(key); } catch (_) { return null; } },
+  set(key, value) { try { localStorage.setItem(key, value); } catch (_) { /* storage blocked or full: ignore */ } }
+};
+
 const escapeHTML = (value = '') => String(value).replace(/[&<>"']/g, (char) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
 
 async function renderPublications(force = false) {
@@ -39,8 +44,8 @@ async function renderPublications(force = false) {
   }
 }
 
-const researchTerms = /artificial intelligence|machine learning|deep learning|computer vision|medical|retina|retinal|knowledge graph|hypergraph|multimodal|classification|prediction|neural|nlp|pytorch|tensorflow|research/i;
-const webTerms = /php|html|css|javascript|web|portfolio|website|database|mysql/i;
+const researchTerms = /artificial intelligence|machine learning|deep learning|computer vision|medical|retina|retinal|knowledge graph|hypergraph|multimodal|classification|prediction|neural|\bnlp\b|pytorch|tensorflow|research|jupyter/i;
+const webTerms = /\b(php|html|css|javascript|typescript|web|portfolio|website|database|mysql)\b/i;
 function projectCategory(repo) {
   const text = `${repo.name} ${repo.description || ''} ${(repo.topics || []).join(' ')} ${repo.language || ''}`;
   if (researchTerms.test(text)) return 'ai';
@@ -57,19 +62,29 @@ async function loadGitHubProjects() {
   const cacheKey = `portfolio:github:${GITHUB_USER}`;
   let repositories;
   try {
-    const cached = JSON.parse(localStorage.getItem(cacheKey) || 'null');
-    if (cached && Date.now() - cached.savedAt < 6 * 60 * 60 * 1000) repositories = cached.repositories;
+    const cached = JSON.parse(store.get(cacheKey) || 'null');
+    if (cached && Array.isArray(cached.repositories) && Date.now() - cached.savedAt < 6 * 60 * 60 * 1000) repositories = cached.repositories;
   } catch (_) { /* Ignore malformed local cache. */ }
   try {
     if (!repositories) {
-      const response = await fetch(`https://api.github.com/users/${encodeURIComponent(GITHUB_USER)}/repos?sort=updated&direction=desc&per_page=100`, {headers: {'Accept':'application/vnd.github+json'}});
-      if (!response.ok) throw new Error(response.status === 403 ? 'GitHub API rate limit reached. Try again later.' : 'GitHub repositories could not be loaded.');
-      repositories = await response.json();
-      localStorage.setItem(cacheKey, JSON.stringify({savedAt: Date.now(), repositories}));
+      let response;
+      try {
+        response = await fetch(`https://api.github.com/users/${encodeURIComponent(GITHUB_USER)}/repos?sort=updated&direction=desc&per_page=100`, {headers: {'Accept':'application/vnd.github+json'}});
+      } catch (_) {
+        throw new Error('GitHub repositories could not be reached. Check your connection and try again.');
+      }
+      if (!response.ok) throw new Error(response.status === 403 || response.status === 429 ? 'GitHub API rate limit reached. Try again later.' : 'GitHub repositories could not be loaded.');
+      const data = await response.json();
+      if (!Array.isArray(data)) throw new Error('GitHub repositories could not be loaded.');
+      // Keep only the fields the page uses so the cache stays small.
+      repositories = data.map(({name, full_name, html_url, description, language, topics, stargazers_count, forks_count, fork, archived, pushed_at, updated_at}) =>
+        ({name, full_name, html_url, description, language, topics, stargazers_count, forks_count, fork, archived, pushed_at, updated_at}));
+      store.set(cacheKey, JSON.stringify({savedAt: Date.now(), repositories}));
     }
     const sorted = repositories.filter((repo) => !repo.fork && !repo.archived).sort((a,b) => rankRepository(b) - rankRepository(a) || new Date(b.pushed_at) - new Date(a.pushed_at));
     window.portfolioRepositories = sorted;
-    renderProjectFilter('all');
+    const active = document.querySelector('.filter-chip.active');
+    renderProjectFilter(active ? active.dataset.filter : 'all');
     status.textContent = `Public repositories from @${GITHUB_USER}; cached in this browser for up to 6 hours.`;
   } catch (error) {
     grid.innerHTML = `<p class="empty-note">${escapeHTML(error.message)} <a class="text-link" href="https://github.com/${GITHUB_USER}" target="_blank" rel="noopener noreferrer">Browse GitHub ↗</a></p>`;
@@ -78,7 +93,8 @@ async function loadGitHubProjects() {
 }
 function renderProjectFilter(filter) {
   const grid = document.querySelector('#github-projects');
-  const repos = (window.portfolioRepositories || []).filter((repo) => filter === 'all' || projectCategory(repo) === filter);
+  if (!window.portfolioRepositories) return;
+  const repos = window.portfolioRepositories.filter((repo) => filter === 'all' || projectCategory(repo) === filter);
   if (!repos.length) {
     grid.innerHTML = '<p class="empty-note">No repositories match this filter yet. Browse all repositories on GitHub.</p>';
     return;
@@ -89,12 +105,12 @@ function renderProjectFilter(filter) {
 function initTheme() {
   const root = document.documentElement;
   const toggle = document.querySelector('.theme-toggle');
-  const saved = localStorage.getItem('portfolio-theme');
+  const saved = store.get('portfolio-theme');
   if (saved) root.dataset.theme = saved;
   else if (window.matchMedia('(prefers-color-scheme: dark)').matches) root.dataset.theme = 'dark';
   toggle.addEventListener('click', () => {
     root.dataset.theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
-    localStorage.setItem('portfolio-theme', root.dataset.theme);
+    store.set('portfolio-theme', root.dataset.theme);
   });
 }
 function initNavigation() {
@@ -108,6 +124,11 @@ function initNavigation() {
   nav.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => {
     nav.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false');
   }));
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && nav.classList.contains('open')) {
+      nav.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); toggle.focus();
+    }
+  });
   document.querySelector('#current-year').textContent = new Date().getFullYear();
 }
 
