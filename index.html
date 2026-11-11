@@ -1,177 +1,109 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-        integrity="sha512-RrPwF7m7U3QquzD0CZyZKvX9pX91noEwNyh6niXqDm/kq1vfiGgjCfGkzOeUX+9l4S8V1xXDZyMGSXVDVlqTDA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f8f6">
+  <meta name="description" content="Md. Hasan Emam is an AI and machine learning researcher and software developer interested in deep learning, computer vision, multimodal learning, and knowledge-enhanced AI.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Md. Hasan Emam — AI Researcher & Software Developer">
+  <meta property="og:description" content="Research, publications, projects, and software development by Md. Hasan Emam.">
+  <meta property="og:image" content="usuer.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>Md. Hasan Emam — AI Researcher & Software Developer</title>
+  <link rel="canonical" href="https://mdhasanemam.github.io/mdhasanemamrabbyportfolio/">
+  <link rel="icon" href="photo_2024-04-22_18-15-36.jpg">
+  <link rel="preconnect" href="https://api.github.com">
+  <link rel="stylesheet" href="styles.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Md. Hasan Emam",
+    "jobTitle": "AI and Machine Learning Researcher; Software Developer",
+    "affiliation": {"@type": "CollegeOrUniversity", "name": "North South University"},
+    "alumniOf": {"@type": "CollegeOrUniversity", "name": "North South University"},
+    "sameAs": ["https://github.com/mdhasanemam", "https://scholar.google.com/citations?user=UYvdcTkAAAAJ", "https://www.linkedin.com/in/md-hasan-emam/"]
+  }
+  </script>
+  <script src="app.js" defer></script>
 </head>
-
 <body>
-    <div id="header">
-        <div class="container">
-            <nav>
-                <img src="photo_2024-04-22_18-15-36.jpg" class="logo">
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#portfolio">Portfolio</a></li>
-                    <li><a href="#education">Education</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-            <div class="header-text">
-                <p>Computer Science and Engineering Student</p>
-                <h1>I am <span>Md.Hasan Emam</span> from <span>Bangladesh</span>, <br>currently studying CSE <br>at the
-                    Department of ECE <br> at North South University.</h1>
-            </div>
-        </div>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap nav-wrap">
+      <a class="wordmark" href="#home" aria-label="Md. Hasan Emam home">MHE<span>.</span></a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle navigation"><span></span><span></span></button>
+      <nav id="primary-nav" aria-label="Primary navigation">
+        <a href="#about">About</a><a href="#publications">Publications</a><a href="#research">Research</a><a href="#projects">Projects</a><a href="#skills">Skills</a><a href="#contact">Contact</a>
+        <button class="theme-toggle" type="button" aria-label="Switch color theme" title="Switch color theme"><span aria-hidden="true">◐</span></button>
+      </nav>
     </div>
-
-    <div id="about">
-        <div class="container">
-            <div class="row">
-                <div class="about-col-1">
-                    <img src="usuer.jpg">
-                </div>
-                <div class="about-col-2">
-                    <h1 class="sub-title">About Me</h1>
-                    <p>🔍 About Me:
-                        Enthusiastic and dedicated student at North South University with a passion for computer science and
-                        a solid foundation in C, Java, data structures,
-                        discrete mathematics, and computer architecture,HTML,CSS, PHP , SQL,DBMS.
-                        Eager to contribute my skills and knowledge to innovative projectswhile continually expanding my
-                        expertise
-                        in the dynamic field of computer science.</p>
-                    <div class="tab-title">
-                        <p class="tab-link active-link" onclick="opentab(event, 'Skills')">Skills</p>
-                        <p class="tab-link" onclick="opentab(event, 'Education')">Education</p>
-                        <p class="tab-link" onclick="opentab(event, 'Experience')">Experience</p>
-                    </div>
-                    <div class="tab-contents active-tab" id="Skills">
-                        <ul>
-                            <li><span>HTML & CSS</span><br>Markup & structure</li>
-                            <li><span>C, C++, JAVA</span><br>Programming Language</li>
-                            <li><span>MYSQL</span><br>Database</li>
-                            <li><span>PHP</span><br>Framework</li>
-                        </ul>
-                    </div>
-                    <div class="tab-contents" id="Education">
-                        <ul>
-                            <li><span>Primary School</span><br>Anirban School, Gopalganj</li>
-                            <li><span>High-School</span><br>S.M Model Govt. High school, Gopalganj</li>
-                            <li><span>Higher Secondary</span><br>Hazi Lalmia City College, Gopalganj</li>
-                            <li><span>University</span><br>CSE at North South University, Dhaka</li>
-                        </ul>
-                    </div>
-                    <div class="tab-contents" id="Experience">
-                        <ul>
-                            <li><span>Experience</span><br>Experiences will be added very soon</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+  </header>
+  <main id="main">
+    <section class="hero section" id="home">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="status-dot"></span> AI Research · Deep Learning · Software</p>
+          <h1>Md. Hasan<br><span>Emam</span></h1>
+          <p class="hero-lead">AI and machine learning researcher exploring how intelligent systems can become more useful, interpretable, and trustworthy.</p>
+          <p class="hero-note">CSE, Department of Electrical and Computer Engineering · North South University · Dhaka, Bangladesh</p>
+          <div class="hero-actions"><a class="button button-primary" href="#research">Explore my research <span aria-hidden="true">↗</span></a><a class="button button-quiet" href="Profile.pdf" target="_blank" rel="noopener">Download CV <span aria-hidden="true">↓</span></a></div>
+          <div class="social-links" aria-label="Academic and developer profiles"><a href="https://github.com/mdhasanemam" target="_blank" rel="noopener noreferrer">GitHub <span>↗</span></a><a href="https://scholar.google.com/citations?user=UYvdcTkAAAAJ" target="_blank" rel="noopener noreferrer">Google Scholar <span>↗</span></a><a href="https://www.linkedin.com/in/md-hasan-emam/" target="_blank" rel="noopener noreferrer">LinkedIn <span>↗</span></a></div>
         </div>
-    </div>
+        <div class="hero-visual"><div class="portrait-frame"><img src="usuer.jpg" alt="Portrait of Md. Hasan Emam" width="420" height="520" fetchpriority="high"><div class="portrait-caption"><span>Based in Dhaka, Bangladesh</span><span>Research-minded. Builder at heart.</span></div></div><div class="orbit orbit-one" aria-hidden="true">AI</div><div class="orbit orbit-two" aria-hidden="true">ML</div></div>
+      </div>
+      <div class="wrap hero-bottom"><span>Research interests</span><p>Computer vision <i>·</i> Multimodal learning <i>·</i> Knowledge graphs <i>·</i> Trustworthy AI</p><a href="#about" aria-label="Scroll to about section">↓</a></div>
+    </section>
 
-    <div class="container" id="portfolio">
-        <h1 class="sub-title">My Works</h1>
-        <div class="download-container">
-            <div class="download">
-                <h1><span>NSU CGPA Calculator</span></h1>
-                <a href="Project.zip" download class="download-link">Download C Files</a>
-            </div>
-            <div class="download">
-                <h1><span>Hotel Management System</span></h1>
-                <a href="hotel_management_System_CSE215-master.zip" download class="download-link">Download Java
-                    Files</a>
-            </div>
+    <section class="section section-muted" id="about">
+      <div class="wrap about-grid"><div><p class="eyebrow">01 / About</p><h2>Research with a<br>human purpose.</h2></div><div class="about-copy"><p class="large-copy">I am an AI and machine learning researcher and software developer with an academic background in computer science and engineering at North South University.</p><p>My interests span deep learning, computer vision, multimodal learning, knowledge graphs, natural language processing, explainable AI, and medical image analysis. I am especially interested in knowledge-enhanced methods and reliable AI for health-related applications.</p><p>This portfolio brings together research publications, ongoing interests, and selected software work. Publication and project details are labeled carefully; no unverified results or achievements are claimed.</p><div class="education-card"><span class="card-label">EDUCATION</span><h3>B.Sc. in Computer Science and Engineering</h3><p>Department of Electrical and Computer Engineering (ECE)<br>North South University (NSU), Dhaka, Bangladesh</p></div></div></div>
+    </section>
+
+    <section class="section" id="publications">
+      <div class="wrap">
+        <div class="section-heading"><div><p class="eyebrow">02 / Selected work</p><h2>Publications</h2><p class="section-intro">Research records are managed as structured data. Dates, authors, and identifiers are shown only when verified.</p></div><a class="text-link" href="https://scholar.google.com/citations?user=UYvdcTkAAAAJ" target="_blank" rel="noopener noreferrer">Google Scholar profile ↗</a></div>
+        <div id="publication-list" class="publication-list" aria-live="polite"><p class="loading-note">Loading publication records…</p></div>
+        <div class="sync-note"><span id="sync-status">Publication list uses the locally maintained records.</span><button class="text-button" id="refresh-publications" type="button">Refresh records ↻</button></div>
+      </div>
+    </section>
+
+    <section class="section section-dark" id="research">
+      <div class="wrap">
+        <div class="section-heading"><div><p class="eyebrow">03 / Research directions</p><h2>Questions I explore</h2></div><p class="section-intro">Research themes and project directions—not claims of completed work unless linked to a verified publication or repository.</p></div>
+        <div class="research-grid">
+          <article class="research-card"><span>01</span><h3>Deep learning for medical imaging</h3><p>Computer vision approaches for medical images, including retinal imaging, image retrieval, and disease triage.</p><div class="tag-list"><span>Medical AI</span><span>Computer vision</span></div></article>
+          <article class="research-card"><span>02</span><h3>Knowledge-enhanced AI</h3><p>Using structured concepts, knowledge graphs, and hypergraph representations to bring semantic context into learning systems.</p><div class="tag-list"><span>Knowledge graphs</span><span>Hypergraphs</span></div></article>
+          <article class="research-card"><span>03</span><h3>Multimodal & trustworthy learning</h3><p>Exploring models that combine complementary data sources while supporting uncertainty awareness and explainability.</p><div class="tag-list"><span>Multimodal</span><span>Explainable AI</span></div></article>
         </div>
-        <div>
-            <a href="#more" class="btn">See More</a>
+      </div>
+    </section>
+
+    <section class="section section-muted" id="projects">
+      <div class="wrap">
+        <div class="section-heading"><div><p class="eyebrow">04 / Open source</p><h2>Projects on GitHub</h2><p class="section-intro">Public repositories are loaded from GitHub and cached in this browser. Research-focused repositories are prioritized when their metadata indicates a match.</p></div><a class="text-link" href="https://github.com/mdhasanemam" target="_blank" rel="noopener noreferrer">All repositories ↗</a></div>
+        <div class="filter-row" role="group" aria-label="Filter projects"><button class="filter-chip active" type="button" data-filter="all" aria-pressed="true">All projects</button><button class="filter-chip" type="button" data-filter="ai" aria-pressed="false">AI & research</button><button class="filter-chip" type="button" data-filter="web" aria-pressed="false">Web development</button><button class="filter-chip" type="button" data-filter="systems" aria-pressed="false">Systems & coursework</button></div>
+        <div id="github-projects" class="project-grid" aria-live="polite"><p class="loading-note">Fetching public repositories…</p></div>
+        <p id="github-status" class="sync-note" role="status"></p>
+        <div class="legacy-project"><div><span class="card-label">EXISTING COURSEWORK</span><h3>Hotel Management System</h3><p>Java coursework archive retained from the original portfolio.</p></div><a class="text-link" href="hotel_management_System_CSE215-master.zip" download>Download archive ↓</a></div>
+      </div>
+    </section>
+
+    <section class="section" id="skills">
+      <div class="wrap">
+        <div class="section-heading"><div><p class="eyebrow">05 / Toolkit</p><h2>Skills & foundations</h2></div><p class="section-intro">A practical overview of languages, technical foundations, and areas of study—without arbitrary proficiency scores.</p></div>
+        <div class="skills-grid">
+          <article class="skill-group"><span class="card-label">PROGRAMMING</span><h3>Languages</h3><ul class="skill-list"><li>C</li><li>C++</li><li>Java</li><li>PHP</li><li>SQL</li></ul></article>
+          <article class="skill-group"><span class="card-label">AI & RESEARCH</span><h3>Areas of interest</h3><ul class="skill-list"><li>Machine learning</li><li>Deep learning</li><li>Computer vision</li><li>Multimodal learning</li><li>Knowledge graphs</li><li>Explainable AI</li></ul></article>
+          <article class="skill-group"><span class="card-label">ENGINEERING</span><h3>Foundations</h3><ul class="skill-list"><li>HTML & CSS</li><li>Database systems</li><li>Data structures & algorithms</li><li>Computer networks</li><li>Git & GitHub</li></ul></article>
         </div>
-    </div>
+      </div>
+    </section>
 
-    <div id="contact">
-        <div class="container">
-            <div class="row">
-                <div class="contact-left">
-                    <h1 class="sub-title">Contact Me</h1>
-                    <p><i class="fa fa-paper-plane"></i> hasanemamrabbi@gmail.com</p>
-                    <p><i class="fa fa-mobile-alt"></i> 01785805606</p>
-                    <div class="social-icons">
-                        <a href="https://www.linkedin.com/in/md-hasan-emam/" rel="noopener"><i class="fab fa-linkedin"></i></a>
-                        <a href="https://www.facebook.com/hasanemamrabby25102000/" rel="noopener"><i class="fab fa-facebook-square"></i></a>
-                        <a href="https://www.instagram.com/mohammadhasanemamrabby/?hl=en" rel="noopener"><i class="fab fa-instagram-square"></i></a>
-                        <a href="https://twitter.com/hasanemamrabby" rel="noopener"><i class="fab fa-twitter-square"></i></a>
-                        <a href="https://www.threads.net/@mohammadhasanemamrabby" rel="noopener"><i class="fab fa-twitch"></i></a>
-                    </div>
-                    <div>
-                        <a href="Profile.pdf" class="btn btn2">Download CV</a>
-                    </div>
-                </div>
-                <div class="contact-right">
-                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                        <input type="text" name="Name" placeholder="Your Name" required>
-                        <input type="email" name="email" placeholder="Your Email" required>
-                        <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
-                        <button type="submit">Submit</button>
-                    </form>
-                </div>
-                
-            </div>
-        </div>
-    </div>
-
-    <div class="copyright">
-        <div class="container">
-            <p>copyright © Hasan. <i class="fa fa-window" style="--fa-primary-color: #f60944; --fa-secondary-color: #f60944;"></i>
-                Developed by MD.Hasan Emam </p>
-        </div>
-    </div>
-
-    <script>
-        var tablinks = document.getElementsByClassName('tab-link');
-        var tabcontents = document.getElementsByClassName('tab-contents');
-
-        function opentab(event, tabname) {
-            for (let tablink of tablinks) {
-                tablink.classList.remove('active-link');
-            }
-            for (let tabcontent of tabcontents) {
-                tabcontent.classList.remove('active-tab');
-            }
-
-            document.getElementById(tabname).classList.add('active-tab');
-            event.currentTarget.classList.add('active-link');
-        }
-
-        // Smooth scroll function
-        function scrollToSection(sectionId) {
-            const section = document.getElementById(sectionId);
-            if (section) {
-                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-        }
-
-        // Add event listeners to navigation links
-        document.addEventListener('DOMContentLoaded', function () {
-            const navLinks = document.querySelectorAll('nav ul li a');
-
-            navLinks.forEach(function (link) {
-                link.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href').substring(1);
-                    scrollToSection(targetId);
-                });
-            });
-        });
-    </script>
+    <section class="section contact-section" id="contact">
+      <div class="wrap contact-grid"><div><p class="eyebrow">06 / Get in touch</p><h2>Have a research<br>question or idea?</h2><p class="section-intro">For research, collaboration, or software development conversations, feel free to reach out.</p><a class="email-link" href="mailto:hasanemamrabbi@gmail.com">hasanemamrabbi@gmail.com ↗</a><div class="contact-profiles"><a href="https://www.linkedin.com/in/md-hasan-emam/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a href="https://github.com/mdhasanemam" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="https://scholar.google.com/citations?user=UYvdcTkAAAAJ" target="_blank" rel="noopener noreferrer">Google Scholar ↗</a></div></div><div class="contact-aside"><span class="contact-mark" aria-hidden="true">M.</span><p>Currently interested in thoughtful research, responsible AI, and useful software.</p><a class="button button-primary" href="mailto:hasanemamrabbi@gmail.com">Contact me <span aria-hidden="true">↗</span></a></div></div>
+    </section>
+  </main>
+  <footer class="site-footer"><div class="wrap footer-inner"><a class="wordmark" href="#home">MHE<span>.</span></a><p>© <span id="current-year"></span> Md. Hasan Emam. Built for research and ideas.</p><a href="#home">Back to top ↑</a></div></footer>
 </body>
-
 </html>
