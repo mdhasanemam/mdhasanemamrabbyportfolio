@@ -1,0 +1,36 @@
+{
+  "publications": [
+    {
+      "id": "concept-enhanced-hypergraph-medical-image-retrieval",
+      "title": "Concept-Enhanced Hypergraph-Guided Medical Image Retrieval Using CUI Semantics",
+      "authors": "",
+      "venue": "IEEE Access",
+      "year": "",
+      "status": "Published · IEEE Access",
+      "description": "A study of medical image retrieval that combines CUI semantic concepts with a hypergraph-guided approach.",
+      "doi": "",
+      "paperUrl": "",
+      "publisherUrl": "",
+      "pdfUrl": "",
+      "keywords": ["Knowledge graphs", "Medical image retrieval", "Hypergraph learning", "AI"]
+    },
+    {
+      "id": "quality-aware-uncertainty-guided-retinal-triage",
+      "title": "Quality-Aware and Uncertainty-Guided Selective Retinal Disease Triage: Development on Smartphone Fundus Images and Cross-Dataset External Validation",
+      "authors": "",
+      "venue": "Publication details not supplied",
+      "year": "",
+      "status": "Status not independently verified",
+      "description": "Research on quality-aware, uncertainty-guided selective triage using smartphone fundus images and cross-dataset external validation. The publication status and bibliographic details need verification before being represented as published.",
+      "doi": "",
+      "paperUrl": "",
+      "publisherUrl": "",
+      "pdfUrl": "",
+      "keywords": ["Retinal imaging", "Medical AI", "Uncertainty", "Triage"]
+    }
+  ],
+  "sync": {
+    "lastSuccessfulSync": null,
+    "note": "Google Scholar does not provide a public supported publication API for this use. The portfolio does not scrape Scholar; publication records are maintained from verified, authorized sources."
+  }
+}
