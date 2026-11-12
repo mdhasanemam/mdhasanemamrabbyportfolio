@@ -40,3 +40,7 @@
 .button{transition:transform .25s,box-shadow .25s,background-color .25s}
 .button:hover{transform:translateY(-2px)}
 @media(max-width:640px){#primary-nav a::after{display:none}}
+
+.wordmark{display:inline-flex;align-items:center;gap:10px}.wordmark-logo{width:30px;height:30px;flex:none;transition:transform .5s cubic-bezier(.2,.7,.2,1)}.wordmark:hover .wordmark-logo{transform:rotate(-8deg) scale(1.08)}.wordmark-text span{color:var(--accent)}
+.wordmark .wordmark-text{color:var(--ink)}
+.wordmark-logo{border-radius:8px;box-shadow:0 0 0 1px rgba(117,197,160,.35)}
