@@ -4,3 +4,39 @@
 @media(max-width:850px){.hero.section{padding-top:80px;padding-bottom:38px}.hero-grid{gap:34px}.about-grid{gap:48px}.research-grid,.project-grid{grid-template-columns:repeat(2,1fr)}nav{gap:17px}nav>a{font-size:12px}.section{padding:86px 0}}
 @media(max-width:640px){.wrap{width:min(100% - 36px,520px)}.nav-wrap{height:66px}.menu-toggle{display:grid;align-content:center;gap:5px;padding:9px}.menu-toggle span{height:1px;background:var(--ink);width:18px}nav{display:none;position:absolute;top:66px;left:0;right:0;background:var(--bg);padding:18px 22px 24px;border-bottom:1px solid var(--line);align-items:flex-start;flex-direction:column;gap:14px}nav.open{display:flex}.theme-toggle{position:absolute;right:22px;top:17px}.hero.section{padding-top:55px;padding-bottom:30px}.hero-grid{grid-template-columns:1fr;gap:35px}.hero h1{font-size:clamp(46px,17vw,68px)}.hero-lead{font-size:18px}.hero-visual{width:min(78%,330px);justify-self:center}.portrait-frame img{height:360px}.hero-bottom{grid-template-columns:1fr 24px;row-gap:5px;margin-top:38px}.hero-bottom>span{grid-column:1}.hero-bottom p{grid-column:1}.hero-bottom>a{grid-column:2;grid-row:1/3}.section{padding:72px 0}.about-grid,.contact-grid{grid-template-columns:1fr;gap:28px}.about-grid h2 br,.contact-grid h2 br{display:none}.section-heading{align-items:flex-start;flex-direction:column;gap:14px;margin-bottom:30px}.section-heading .section-intro{max-width:100%}.publication-card{grid-template-columns:1fr;gap:8px;padding:23px 0}.publication-meta strong{display:inline;margin-right:10px}.research-grid,.project-grid,.skills-grid{grid-template-columns:1fr}.research-card{min-height:0}.sync-note{align-items:flex-start;flex-direction:column}.contact-aside{min-height:220px}.footer-inner{flex-wrap:wrap;gap:12px}.footer-inner p{order:3;flex-basis:100%;margin:0}.social-links{gap:15px}.hero-bottom p{font-size:10px}.hero-bottom i{padding:0 3px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+
+/* ---------- Motion ---------- */
+.scroll-progress{position:fixed;top:0;left:0;right:0;height:3px;background:var(--accent);transform:scaleX(0);transform-origin:left;z-index:20;pointer-events:none}
+.site-header{animation:drop-in .7s cubic-bezier(.2,.7,.2,1) backwards}
+#primary-nav a{position:relative;transition:color .25s}
+#primary-nav a::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+#primary-nav a:hover::after,#primary-nav a[aria-current="true"]::after{transform:scaleX(1)}
+#primary-nav a[aria-current="true"]{color:var(--accent)}
+
+/* Hidden only until the observer reveals it (and only when JS is running). */
+.js .reveal:not(.is-visible){opacity:0}
+.reveal.is-visible{animation:rise .8s cubic-bezier(.2,.7,.2,1) var(--d,0ms) backwards}
+.reveal[data-reveal="left"].is-visible{animation-name:slide-left}
+.reveal[data-reveal="right"].is-visible{animation-name:slide-right}
+.reveal[data-reveal="pop"].is-visible{animation-name:pop-in}
+
+@keyframes drop-in{from{opacity:0;transform:translateY(-100%)}}
+@keyframes rise{from{opacity:0;transform:translateY(34px)}}
+@keyframes slide-left{from{opacity:0;transform:translateX(-40px)}}
+@keyframes slide-right{from{opacity:0;transform:translateX(40px)}}
+@keyframes pop-in{from{opacity:0;transform:scale(.92) translateY(20px)}}
+@keyframes float{50%{transform:translateY(-9px)}}
+@keyframes drift{50%{transform:translate(4px,-8px)}}
+
+/* Gentle ambient motion in the hero */
+.portrait-frame img{animation:float 7s ease-in-out infinite}
+.orbit-one{animation:drift 5s ease-in-out infinite}
+.orbit-two{animation:drift 6.5s ease-in-out -2s infinite}
+
+/* Hover polish */
+.publication-card,.skill-group,.education-card{transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s}
+.skill-group:hover,.education-card:hover{transform:translateY(-4px)}
+.publication-card:hover{transform:translateX(6px)}
+.button{transition:transform .25s,box-shadow .25s,background-color .25s}
+.button:hover{transform:translateY(-2px)}
+@media(max-width:640px){#primary-nav a::after{display:none}}
