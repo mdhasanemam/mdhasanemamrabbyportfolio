@@ -10,38 +10,54 @@ const store = {
 
 const escapeHTML = (value = '') => String(value).replace(/[&<>"']/g, (char) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
 
-async function renderPublications(force = false) {
+async function renderPublications() {
   const container = document.querySelector('#publication-list');
-  const status = document.querySelector('#sync-status');
-  const button = document.querySelector('#refresh-publications');
-  button.disabled = true;
-  status.textContent = 'Checking the locally maintained publication records…';
   try {
-    const response = await fetch(`${publicationsURL}${force ? `?refresh=${Date.now()}` : ''}`, {cache: force ? 'no-store' : 'default'});
+    const response = await fetch(publicationsURL, {cache: 'no-cache'});
     if (!response.ok) throw new Error('Publication records are temporarily unavailable.');
     const data = await response.json();
-    const publications = Array.isArray(data.publications) ? data.publications : [];
+    // Only papers marked as visible are shown. Set "visible": false (or remove the entry)
+    // to keep a paper off the site, e.g. while it is still under review.
+    const publications = (Array.isArray(data.publications) ? data.publications : []).filter((paper) => paper && paper.visible !== false);
     if (!publications.length) {
-      container.innerHTML = '<p class="empty-note">Publication records will appear here when verified and added.</p>';
-    } else {
-      container.innerHTML = publications.map((paper) => {
-        const links = [
-          paper.paperUrl && `<a href="${escapeHTML(paper.paperUrl)}" target="_blank" rel="noopener noreferrer">Paper ↗</a>`,
-          paper.publisherUrl && `<a href="${escapeHTML(paper.publisherUrl)}" target="_blank" rel="noopener noreferrer">Publisher ↗</a>`,
-          paper.pdfUrl && `<a href="${escapeHTML(paper.pdfUrl)}" target="_blank" rel="noopener noreferrer">PDF ↗</a>`,
-          paper.doi && `<a href="https://doi.org/${escapeHTML(paper.doi)}" target="_blank" rel="noopener noreferrer">DOI ↗</a>`
-        ].filter(Boolean).join('');
-        return `<article class="publication-card"><div class="publication-meta"><strong>${escapeHTML(paper.year || 'Year not listed')}</strong>${escapeHTML(paper.venue || 'Publication venue not listed')}<br><span class="publication-status">${escapeHTML(paper.status || 'Status to verify')}</span></div><div><h3>${escapeHTML(paper.title)}</h3><p>${escapeHTML(paper.description || '')}</p>${paper.authors ? `<p><strong>Authors:</strong> ${escapeHTML(paper.authors)}</p>` : ''}<div class="tag-list">${(paper.keywords || []).map((tag) => `<span>${escapeHTML(tag)}</span>`).join('')}</div>${links ? `<div class="publication-links">${links}</div>` : ''}</div></article>`;
-      }).join('');
+      container.innerHTML = '<p class="empty-note">Publications will appear here. See Google Scholar for the current list.</p>';
+      return;
     }
-    const sync = data.sync || {};
-    status.textContent = sync.lastSuccessfulSync ? `Records last synchronized ${new Date(sync.lastSuccessfulSync).toLocaleString()}.` : (sync.note || 'Publication list is maintained from verified records. Google Scholar is not scraped.');
+    container.innerHTML = publications.map((paper) => {
+      const links = [
+        paper.paperUrl && `<a href="${escapeHTML(paper.paperUrl)}" target="_blank" rel="noopener noreferrer">Paper ↗</a>`,
+        paper.publisherUrl && `<a href="${escapeHTML(paper.publisherUrl)}" target="_blank" rel="noopener noreferrer">Publisher ↗</a>`,
+        paper.pdfUrl && `<a href="${escapeHTML(paper.pdfUrl)}" target="_blank" rel="noopener noreferrer">PDF ↗</a>`,
+        paper.doi && `<a href="https://doi.org/${escapeHTML(paper.doi)}" target="_blank" rel="noopener noreferrer">DOI ↗</a>`
+      ].filter(Boolean).join('');
+      const meta = [
+        paper.year && `<strong>${escapeHTML(paper.year)}</strong>`,
+        paper.venue && escapeHTML(paper.venue),
+        paper.status && `<br><span class="publication-status">${escapeHTML(paper.status)}</span>`
+      ].filter(Boolean).join('');
+      return `<article class="publication-card"><div class="publication-meta">${meta}</div><div><h3>${escapeHTML(paper.title)}</h3>${paper.description ? `<p>${escapeHTML(paper.description)}</p>` : ''}${paper.authors ? `<p><strong>Authors:</strong> ${escapeHTML(paper.authors)}</p>` : ''}<div class="tag-list">${(paper.keywords || []).map((tag) => `<span>${escapeHTML(tag)}</span>`).join('')}</div>${links ? `<div class="publication-links">${links}</div>` : ''}</div></article>`;
+    }).join('');
   } catch (error) {
     container.innerHTML = '<p class="empty-note">Publication records could not be loaded. Please try again later.</p>';
-    status.textContent = 'Could not refresh publication records.';
-  } finally {
-    button.disabled = false;
   }
+}
+
+function initCopyButtons() {
+  document.querySelectorAll('.copy-btn').forEach((button) => button.addEventListener('click', async () => {
+    const text = button.dataset.copy;
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch (_) {
+      const area = document.createElement('textarea');
+      area.value = text; area.style.position = 'fixed'; area.style.opacity = '0';
+      document.body.appendChild(area); area.select();
+      try { document.execCommand('copy'); } catch (__) { /* ignore */ }
+      area.remove();
+    }
+    const original = button.textContent;
+    button.textContent = 'Copied ✓';
+    setTimeout(() => { button.textContent = original; }, 1800);
+  }));
 }
 
 const researchTerms = /artificial intelligence|machine learning|deep learning|computer vision|medical|retina|retinal|knowledge graph|hypergraph|multimodal|classification|prediction|neural|\bnlp\b|pytorch|tensorflow|research|jupyter/i;
@@ -135,7 +151,7 @@ function initNavigation() {
 document.addEventListener('DOMContentLoaded', () => {
   initTheme(); initNavigation();
   renderPublications(); loadGitHubProjects();
-  document.querySelector('#refresh-publications').addEventListener('click', () => renderPublications(true));
+  initCopyButtons();
   document.querySelectorAll('.filter-chip').forEach((button) => button.addEventListener('click', () => {
     document.querySelectorAll('.filter-chip').forEach((chip) => {chip.classList.toggle('active', chip === button); chip.setAttribute('aria-pressed', String(chip === button));});
     renderProjectFilter(button.dataset.filter);
