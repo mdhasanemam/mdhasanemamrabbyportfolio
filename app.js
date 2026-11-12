@@ -148,8 +148,77 @@ function initNavigation() {
   document.querySelector('#current-year').textContent = new Date().getFullYear();
 }
 
+
+function initMotion() {
+  const root = document.documentElement;
+  const supportsObserver = 'IntersectionObserver' in window;
+  const show = (el) => el.classList.add('is-visible');
+  const io = supportsObserver ? new IntersectionObserver((entries) => entries.forEach((entry) => {
+    if (entry.isIntersecting) { show(entry.target); io.unobserve(entry.target); }
+  }), {threshold: 0.12, rootMargin: '0px 0px -6% 0px'}) : null;
+
+  // Tag children of a container so they reveal one after another.
+  const tag = (parent, kind = 'up', step = 90) => {
+    Array.from(parent.children).forEach((el, i) => {
+      if (el.classList.contains('reveal')) return;
+      el.classList.add('reveal'); el.dataset.reveal = kind;
+      el.style.setProperty('--d', `${Math.min(i, 6) * step}ms`);
+      io ? io.observe(el) : show(el);
+    });
+  };
+  const tagSelf = (el, kind = 'up', delay = 0) => {
+    if (!el || el.classList.contains('reveal')) return;
+    el.classList.add('reveal'); el.dataset.reveal = kind; el.style.setProperty('--d', `${delay}ms`);
+    io ? io.observe(el) : show(el);
+  };
+  const each = (selector, fn) => document.querySelectorAll(selector).forEach(fn);
+
+  each('.hero-copy', (el) => tag(el, 'up', 110));
+  tagSelf(document.querySelector('.hero-visual'), 'pop', 250);
+  tagSelf(document.querySelector('.hero-bottom'), 'up', 100);
+  each('.section-heading', (el) => tag(el, 'up', 100));
+  each('.about-copy', (el) => tag(el, 'left', 100));
+  tagSelf(document.querySelector('.education-card'), 'right', 150);
+  each('.research-grid, .skills-grid', (el) => tag(el, 'up', 110));
+  each('.filter-row', (el) => tagSelf(el, 'up'));
+  each('.contact-grid > div:first-child', (el) => tag(el, 'left', 90));
+  tagSelf(document.querySelector('.contact-aside'), 'pop', 200);
+  tagSelf(document.querySelector('.footer-inner'), 'up');
+
+  // Cards rendered later from JSON / the GitHub API get the same treatment.
+  ['#publication-list', '#github-projects'].forEach((selector) => {
+    const container = document.querySelector(selector);
+    if (!container) return;
+    tag(container, 'up', 100);
+    new MutationObserver(() => tag(container, 'up', 100)).observe(container, {childList: true});
+  });
+
+  root.classList.add('motion-ready');
+
+  // Scroll progress bar
+  const bar = document.querySelector('.scroll-progress');
+  let ticking = false;
+  const update = () => {
+    const max = root.scrollHeight - innerHeight;
+    if (bar) bar.style.transform = `scaleX(${max > 0 ? Math.min(scrollY / max, 1) : 0})`;
+    ticking = false;
+  };
+  addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, {passive: true});
+  update();
+
+  // Highlight the nav link of the section being read
+  if (supportsObserver) {
+    const links = new Map(Array.from(document.querySelectorAll('#primary-nav a[href^="#"]')).map((a) => [a.getAttribute('href').slice(1), a]));
+    const spy = new IntersectionObserver((entries) => entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      links.forEach((a, id) => a.setAttribute('aria-current', String(id === entry.target.id)));
+    }), {rootMargin: '-40% 0px -55% 0px'});
+    links.forEach((_, id) => { const section = document.getElementById(id); if (section) spy.observe(section); });
+  }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
-  initTheme(); initNavigation();
+  initTheme(); initNavigation(); initMotion();
   renderPublications(); loadGitHubProjects();
   initCopyButtons();
   document.querySelectorAll('.filter-chip').forEach((button) => button.addEventListener('click', () => {
