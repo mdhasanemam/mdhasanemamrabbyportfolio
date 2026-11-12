@@ -19,7 +19,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap">
-  <script>try{var t=localStorage.getItem('portfolio-theme');if(t)document.documentElement.dataset.theme=t;else if(matchMedia('(prefers-color-scheme: dark)').matches)document.documentElement.dataset.theme='dark'}catch(e){}</script>
+  <script>document.documentElement.classList.add('js');setTimeout(function(){if(!document.documentElement.classList.contains('motion-ready'))document.documentElement.classList.remove('js')},3500);try{var t=localStorage.getItem('portfolio-theme');if(t)document.documentElement.dataset.theme=t;else if(matchMedia('(prefers-color-scheme: dark)').matches)document.documentElement.dataset.theme='dark'}catch(e){}</script>
   <link rel="stylesheet" href="styles.css">
   <script type="application/ld+json">
   {
@@ -36,6 +36,7 @@
   <script src="app.js" defer></script>
 </head>
 <body>
+  <div class="scroll-progress" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="wrap nav-wrap">
