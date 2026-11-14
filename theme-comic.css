@@ -19,16 +19,11 @@ body{background:var(--bg)}
 .hero{position:relative;isolation:isolate;background-image:radial-gradient(var(--dots) 1.4px,transparent 1.7px);background-size:11px 11px}
 .hero::before{content:"10";position:absolute;right:1%;top:4%;z-index:-1;pointer-events:none;font:400 clamp(190px,34vw,440px)/1 var(--comic);color:transparent;-webkit-text-stroke:3px var(--sky);opacity:.4}
 .hero::after{content:"";position:absolute;left:0;top:0;width:min(34vw,300px);aspect-ratio:1;z-index:-1;pointer-events:none;background:var(--edge);opacity:.2;-webkit-mask:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20200%20200'%3E%3Cpath%20d='M0%200L200%200%20M0%200L190%2062%20M0%200L162%20118%20M0%200L118%20162%20M0%200L62%20190%20M0%200L0%20200%20M45%200Q38%206%2043%2014Q34%2018%2036%2026Q27%2027%2026%2036Q18%2034%2014%2043Q6%2038%200%2045%20M85%200Q72%2011%2081%2026Q65%2033%2069%2050Q52%2052%2050%2069Q33%2065%2026%2081Q11%2072%200%2085%20M125%200Q106%2017%20119%2039Q96%2049%20101%2073Q76%2076%2073%20101Q49%2096%2039%20119Q17%20106%200%20125%20M165%200Q140%2022%20157%2051Q126%2064%20133%2097Q100%20100%2097%20133Q64%20126%2051%20157Q22%20140%200%20165%20M200%200Q170%2027%20190%2062Q153%2078%20162%20118Q122%20122%20118%20162Q78%20153%2062%20190Q27%20170%200%20200'%20fill='none'%20stroke='black'%20stroke-width='2.2'%20stroke-linecap='round'/%3E%3C/svg%3E") no-repeat 0 0/100% 100%;mask:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20200%20200'%3E%3Cpath%20d='M0%200L200%200%20M0%200L190%2062%20M0%200L162%20118%20M0%200L118%20162%20M0%200L62%20190%20M0%200L0%20200%20M45%200Q38%206%2043%2014Q34%2018%2036%2026Q27%2027%2026%2036Q18%2034%2014%2043Q6%2038%200%2045%20M85%200Q72%2011%2081%2026Q65%2033%2069%2050Q52%2052%2050%2069Q33%2065%2026%2081Q11%2072%200%2085%20M125%200Q106%2017%20119%2039Q96%2049%20101%2073Q76%2076%2073%20101Q49%2096%2039%20119Q17%20106%200%20125%20M165%200Q140%2022%20157%2051Q126%2064%20133%2097Q100%20100%2097%20133Q64%20126%2051%20157Q22%20140%200%20165%20M200%200Q170%2027%20190%2062Q153%2078%20162%20118Q122%20122%20118%20162Q78%20153%2062%20190Q27%20170%200%20200'%20fill='none'%20stroke='black'%20stroke-width='2.2'%20stroke-linecap='round'/%3E%3C/svg%3E") no-repeat 0 0/100% 100%}
-.hero-copy::before{content:"বাংলাদেশ";display:inline-block;margin-bottom:20px;padding:5px 14px 5px 40px;font:700 15px var(--bn);color:#fff;border:3px solid var(--edge);border-radius:4px;transform:rotate(-2deg);box-shadow:3px 3px 0 var(--edge);background:radial-gradient(circle at 20px 50%,var(--bd-red) 0 8px,transparent 9px),var(--bd-green)}
 .hero h1{font-family:var(--comic);font-weight:400;font-size:clamp(56px,11vw,118px);line-height:.95;letter-spacing:.02em;text-transform:uppercase;-webkit-text-stroke:2px var(--edge);color:var(--surface);text-shadow:5px 5px 0 var(--accent),9px 9px 0 var(--edge)}
 .hero h1 span{color:var(--gold)}
 .hero-visual{position:relative}
 .portrait-frame{border:4px solid var(--edge);border-radius:6px;box-shadow:10px 10px 0 var(--garnet);transform:rotate(1.5deg)}
 .orbit-one{border:4px solid var(--bd-red)}.orbit-two{border:4px solid var(--bd-green)}
-.hero-visual::before,.hero-visual::after{content:"";position:absolute;top:-30px;right:-34px;z-index:3;pointer-events:none}
-.hero-visual::before{width:122px;height:122px;background:var(--edge);clip-path:polygon(100.0% 50.0%,82.3% 60.5%,90.5% 79.4%,70.0% 77.5%,65.5% 97.6%,50.0% 84.0%,34.5% 97.6%,30.0% 77.5%,9.5% 79.4%,17.7% 60.5%,0.0% 50.0%,17.7% 39.5%,9.5% 20.6%,30.0% 22.5%,34.5% 2.4%,50.0% 16.0%,65.5% 2.4%,70.0% 22.5%,90.5% 20.6%,82.3% 39.5%)}
-.hero-visual::after{content:"GOAL!";top:-24px;right:-28px;width:110px;height:110px;display:grid;place-items:center;background:var(--gold);color:#0b1530;font:400 25px var(--comic);letter-spacing:.04em;transform:rotate(12deg);clip-path:polygon(100.0% 50.0%,84.2% 61.1%,90.5% 79.4%,71.2% 79.1%,65.5% 97.6%,50.0% 86.0%,34.5% 97.6%,28.8% 79.1%,9.5% 79.4%,15.8% 61.1%,0.0% 50.0%,15.8% 38.9%,9.5% 20.6%,28.8% 20.9%,34.5% 2.4%,50.0% 14.0%,65.5% 2.4%,71.2% 20.9%,90.5% 20.6%,84.2% 38.9%);animation:burst 2.8s ease-in-out infinite}
-@keyframes burst{50%{transform:rotate(7deg) scale(1.08)}}
 .portrait-caption{background:var(--surface);color:var(--ink);border:3px solid var(--edge);border-radius:18px;box-shadow:4px 4px 0 var(--edge);font-weight:700}
 .portrait-caption::after{content:"";position:absolute;left:22px;top:-15px;border:8px solid transparent;border-bottom:12px solid var(--edge)}
 
@@ -65,5 +60,14 @@ h2{font-family:var(--comic);font-weight:400;text-transform:uppercase;letter-spac
 .site-footer{position:relative;border-top:4px solid var(--edge)}
 .site-footer::before{content:"";position:absolute;left:0;right:0;top:0;height:8px;background:repeating-linear-gradient(90deg,#004d98 0 34px,#a50044 34px 68px)}
 .bd-line{text-align:center;margin:0;padding:0 18px 26px;font:700 14px var(--bn);color:var(--muted)}
-.bd-flag{display:inline-block;vertical-align:-3px;width:26px;height:16px;margin-right:8px;border:2px solid var(--edge);background:radial-gradient(circle at 46% 50%,var(--bd-red) 0 4px,transparent 5px),var(--bd-green)}
-@media(max-width:640px){.hero-visual::before{right:-8px;transform:scale(.78)}.hero-visual::after{right:-4px;transform:rotate(12deg) scale(.78)}.hero::before{opacity:.25}.portrait-frame{box-shadow:7px 7px 0 var(--garnet)}}
+@media(max-width:640px){.hero::before{opacity:.25}.portrait-frame{box-shadow:7px 7px 0 var(--garnet)}}
+
+
+/* Footer flags: Bangladesh + Blaugrana (stripes only, no club crest) */
+.bd-line{display:flex;justify-content:center;align-items:center;gap:14px}
+.bd-line .flag-bd,.bd-line .flag-fcb{width:46px;height:30px;border:3px solid var(--edge);border-radius:3px;box-shadow:3px 3px 0 var(--edge);transform-origin:left center;animation:flag-wave 3.2s ease-in-out infinite;transition:transform .3s}
+.bd-line .flag-fcb{animation-delay:-1.4s}
+.flag-bd{background:radial-gradient(circle at 44% 50%,var(--bd-red) 0 7px,transparent 7.5px),var(--bd-green)}
+.flag-fcb{background:repeating-linear-gradient(90deg,#004d98 0 8px,#a50044 8px 16px)}
+.bd-line .flag-bd:hover,.bd-line .flag-fcb:hover{transform:rotate(-6deg) scale(1.15);animation:none}
+@keyframes flag-wave{50%{transform:skewY(-3deg) rotate(-1.5deg)}}
