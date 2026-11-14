@@ -28,12 +28,14 @@ async function renderPublications() {
         paper.paperUrl && `<a href="${escapeHTML(paper.paperUrl)}" target="_blank" rel="noopener noreferrer">Paper ↗</a>`,
         paper.publisherUrl && `<a href="${escapeHTML(paper.publisherUrl)}" target="_blank" rel="noopener noreferrer">Publisher ↗</a>`,
         paper.pdfUrl && `<a href="${escapeHTML(paper.pdfUrl)}" target="_blank" rel="noopener noreferrer">PDF ↗</a>`,
+        paper.scholarUrl && `<a href="${escapeHTML(paper.scholarUrl)}" target="_blank" rel="noopener noreferrer">Scholar ↗</a>`,
         paper.doi && `<a href="https://doi.org/${escapeHTML(paper.doi)}" target="_blank" rel="noopener noreferrer">DOI ↗</a>`
       ].filter(Boolean).join('');
       const meta = [
         paper.year && `<strong>${escapeHTML(paper.year)}</strong>`,
         paper.venue && escapeHTML(paper.venue),
-        paper.status && `<br><span class="publication-status">${escapeHTML(paper.status)}</span>`
+        paper.status && `<br><span class="publication-status">${escapeHTML(paper.status)}</span>`,
+        Number(paper.citedBy) > 0 && `<br><span class="publication-status">Cited by ${Number(paper.citedBy)}</span>`
       ].filter(Boolean).join('');
       return `<article class="publication-card"><div class="publication-meta">${meta}</div><div><h3>${escapeHTML(paper.title)}</h3>${paper.description ? `<p>${escapeHTML(paper.description)}</p>` : ''}${paper.authors ? `<p><strong>Authors:</strong> ${escapeHTML(paper.authors)}</p>` : ''}<div class="tag-list">${(paper.keywords || []).map((tag) => `<span>${escapeHTML(tag)}</span>`).join('')}</div>${links ? `<div class="publication-links">${links}</div>` : ''}</div></article>`;
     }).join('');
