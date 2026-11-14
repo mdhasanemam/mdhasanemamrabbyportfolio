@@ -3,17 +3,24 @@
     {
       "id": "concept-enhanced-hypergraph-medical-image-retrieval",
       "title": "Concept-Enhanced Hypergraph-Guided Medical Image Retrieval Using CUI Semantics",
-      "authors": "",
+      "authors": "M Saad, MH Emam, MI Sani, S Momen",
       "venue": "IEEE Access",
-      "year": "",
+      "year": "2026",
       "status": "Published",
       "description": "A study of medical image retrieval that combines CUI semantic concepts with a hypergraph-guided approach.",
       "doi": "",
       "paperUrl": "",
       "publisherUrl": "",
       "pdfUrl": "",
-      "keywords": ["Knowledge graphs", "Medical image retrieval", "Hypergraph learning", "AI"],
-      "visible": true
+      "keywords": [
+        "Knowledge graphs",
+        "Medical image retrieval",
+        "Hypergraph learning",
+        "AI"
+      ],
+      "visible": true,
+      "citedBy": 0,
+      "scholarUrl": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=UYvdcTkAAAAJ&pagesize=100&sortby=pubdate&citation_for_view=UYvdcTkAAAAJ:u5HHmVD_uO8C"
     }
   ]
 }
